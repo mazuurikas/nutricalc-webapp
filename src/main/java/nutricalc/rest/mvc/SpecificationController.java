@@ -1,5 +1,6 @@
 package nutricalc.rest.mvc;
 
+import lombok.extern.slf4j.Slf4j;
 import nutricalc.core.models.entities.Specification;
 import nutricalc.core.services.SpecificationService;
 import nutricalc.core.services.util.SpecificationList;
@@ -9,15 +10,22 @@ import nutricalc.rest.resources.asm.SpecificationListResourceAsm;
 import nutricalc.rest.resources.asm.SpecificationResourceAsm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URI;
 
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 @Controller
 @RequestMapping("/rest/specifications")
+@Slf4j
 public class SpecificationController {
 
     private SpecificationService specificationService;
@@ -27,47 +35,45 @@ public class SpecificationController {
         this.specificationService = specificationService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = GET)
     public ResponseEntity<SpecificationListResource> findAllSpecifications() {
-        System.out.println("SpecificationController.findAllSpecifications");
+        log.debug("SpecificationController.findAllSpecifications");
         SpecificationList specificationList = specificationService.findAllSpecifications();
         SpecificationListResource specificationListResource = new SpecificationListResourceAsm().toResource(specificationList);
-        return new ResponseEntity<>(specificationListResource, HttpStatus.OK);
+        return new ResponseEntity<>(specificationListResource, OK);
     }
 
-    @RequestMapping(value = "/searchSpecification",
-            params = {"s"},
-            method = RequestMethod.GET)
+    @RequestMapping(value = "/searchSpecification", params = {"s"}, method = GET)
     public ResponseEntity<SpecificationListResource> searchSpecifications(
             @RequestParam(value = "s") String searchString) {
-        System.out.println("SpecificationController.searchSpecifications");
-        System.out.println("searchString = " + searchString);
+        log.debug("SpecificationController.searchSpecifications");
+        log.debug("searchString = " + searchString);
         SpecificationList specificationList = specificationService.searchSpecificationsByTitle(searchString);
         SpecificationListResource specificationListResource = new SpecificationListResourceAsm().toResource(specificationList);
-        return new ResponseEntity<>(specificationListResource, HttpStatus.OK);
+        return new ResponseEntity<>(specificationListResource, OK);
     }
 
-    @RequestMapping(value = "/addSpecification", method = RequestMethod.POST)
+    @RequestMapping(value = "/addSpecification", method = POST)
     public ResponseEntity<SpecificationResource> addSpecification(
             @RequestBody SpecificationResource sentSpecification) {
-        System.out.println("SpecificationController.addSpecification");
+        log.debug("SpecificationController.addSpecification");
         Specification addedSpecification = specificationService.addSpecification(sentSpecification.toSpecification());
         SpecificationResource createdResource = new SpecificationResourceAsm().toResource(addedSpecification);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
-        return new ResponseEntity<>(createdResource, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdResource, headers, CREATED);
     }
 
-    @RequestMapping(value = "/{specificationId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{specificationId}", method = GET)
     public ResponseEntity<SpecificationResource> getSpecification(
             @PathVariable Long specificationId) {
-        System.out.println("SpecificationController.getSpecification");
+        log.debug("SpecificationController.getSpecification");
         Specification specification = specificationService.getSpecification(specificationId);
         if (specification != null) {
             SpecificationResource res = new SpecificationResourceAsm().toResource(specification);
-            return new ResponseEntity<>(res, HttpStatus.OK);
+            return new ResponseEntity<>(res, OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(NOT_FOUND);
         }
     }
 
