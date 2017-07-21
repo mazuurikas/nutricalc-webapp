@@ -3,10 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.maz.spring</groupId>
     <artifactId>nutricalc-webapp</artifactId>
-    <packaging>war</packaging>
     <version>0.0.1</version>
+    <packaging>war</packaging>
     <name>nutricalc-webapp Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -114,6 +117,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>nutricalc-webapp</finalName>
         <plugins>
