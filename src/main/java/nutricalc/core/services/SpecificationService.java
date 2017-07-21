@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface SpecificationService {
 
-    public Specification addSpecification(Specification data);
+    Specification add(Specification data);
 
-    public SpecificationList searchSpecificationsByTitle(String specificationTitle);
+    SpecificationList findAllByTitle(String specificationTitle);
 
-    public Specification getSpecification(Long id);
+    Specification findById(Long id);
 
-    public Specification updateSpecification(Long id, Specification data);
+    Specification update(Long id, Specification data);
 
-    public SpecificationList findAllSpecifications();
+    SpecificationList findAll();
 }

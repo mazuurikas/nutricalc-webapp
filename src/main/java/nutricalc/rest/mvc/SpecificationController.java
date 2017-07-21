@@ -36,39 +36,37 @@ public class SpecificationController {
     }
 
     @RequestMapping(method = GET)
-    public ResponseEntity<SpecificationListResource> findAllSpecifications() {
-        log.debug("SpecificationController.findAllSpecifications");
-        SpecificationList specificationList = specificationService.findAllSpecifications();
+    public ResponseEntity<SpecificationListResource> findAll() {
+        log.debug("SpecificationController.findAll");
+        SpecificationList specificationList = specificationService.findAll();
         SpecificationListResource specificationListResource = new SpecificationListResourceAsm().toResource(specificationList);
         return new ResponseEntity<>(specificationListResource, OK);
     }
 
     @RequestMapping(value = "/searchSpecification", params = {"s"}, method = GET)
-    public ResponseEntity<SpecificationListResource> searchSpecifications(
+    public ResponseEntity<SpecificationListResource> findAllByTitle(
             @RequestParam(value = "s") String searchString) {
-        log.debug("SpecificationController.searchSpecifications");
+        log.debug("SpecificationController.findAllByTitle");
         log.debug("searchString = " + searchString);
-        SpecificationList specificationList = specificationService.searchSpecificationsByTitle(searchString);
+        SpecificationList specificationList = specificationService.findAllByTitle(searchString);
         SpecificationListResource specificationListResource = new SpecificationListResourceAsm().toResource(specificationList);
         return new ResponseEntity<>(specificationListResource, OK);
     }
 
     @RequestMapping(value = "/addSpecification", method = POST)
-    public ResponseEntity<SpecificationResource> addSpecification(
-            @RequestBody SpecificationResource sentSpecification) {
-        log.debug("SpecificationController.addSpecification");
-        Specification addedSpecification = specificationService.addSpecification(sentSpecification.toSpecification());
+    public ResponseEntity<SpecificationResource> add(@RequestBody SpecificationResource specification) {
+        log.debug("SpecificationController.add");
+        Specification addedSpecification = specificationService.add(specification.toSpecification());
         SpecificationResource createdResource = new SpecificationResourceAsm().toResource(addedSpecification);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
         return new ResponseEntity<>(createdResource, headers, CREATED);
     }
 
-    @RequestMapping(value = "/{specificationId}", method = GET)
-    public ResponseEntity<SpecificationResource> getSpecification(
-            @PathVariable Long specificationId) {
-        log.debug("SpecificationController.getSpecification");
-        Specification specification = specificationService.getSpecification(specificationId);
+    @RequestMapping(value = "/{id}", method = GET)
+    public ResponseEntity<SpecificationResource> findById(@PathVariable Long id) {
+        log.debug("SpecificationController.findById(" + id + ")");
+        Specification specification = specificationService.findById(id);
         if (specification != null) {
             SpecificationResource res = new SpecificationResourceAsm().toResource(specification);
             return new ResponseEntity<>(res, OK);
@@ -76,5 +74,4 @@ public class SpecificationController {
             return new ResponseEntity<>(NOT_FOUND);
         }
     }
-
 }
