@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="10 seconds">
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%cyan(%d{"yyyy-MM-dd HH:mm:ss,SSSXXX",Europe/Tallinn}) %highlight(%-5level) %cyan([%logger{10}]) - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>log/wh-sync.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>log/nutricalc.log.%d{dd.MM.yyyy}.gz</fileNamePattern>
+			<maxHistory>100</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSXXX",Europe/Tallinn} %-5level [%thread] [%logger{10}.%method:%line] - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="nutricalc" level="DEBUG"/>
+	<logger name="org.springframework" level="INFO"/>
+
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="console" />
+	</root>
+	
+</configuration>

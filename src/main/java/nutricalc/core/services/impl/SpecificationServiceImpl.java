@@ -8,38 +8,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
-public class SpecificationServiceImpl implements SpecificationService{
+public class SpecificationServiceImpl implements SpecificationService {
+
+    private final SpecificationRepo specificationRepo;
 
     @Autowired
-    private SpecificationRepo specificationRepo;
-
-
-    @Override
-    public Specification addSpecification(Specification data) {
-        return specificationRepo.addSpecification(data);
+    public SpecificationServiceImpl(SpecificationRepo specificationRepo) {
+        this.specificationRepo = specificationRepo;
     }
 
     @Override
-    public SpecificationList searchSpecificationsByTitle(String specificationTitle) {
-        return new SpecificationList(specificationRepo.searchSpecificationsByTitle(specificationTitle));
+    public Specification add(Specification data) {
+        return specificationRepo.add(data);
     }
 
     @Override
-    public Specification getSpecification(Long id) {
-        return specificationRepo.findSpecification(id);
+    public SpecificationList findAllByTitle(String specificationTitle) {
+        return new SpecificationList(specificationRepo.findAllByTitle(specificationTitle));
     }
 
     @Override
-    public Specification updateSpecification(Long id, Specification data) {
-        return specificationRepo.updateSpecification(id, data);
+    public Specification findById(Long id) {
+        return specificationRepo.findById(id);
     }
 
     @Override
-    public SpecificationList findAllSpecifications() {
-        return new SpecificationList(specificationRepo.findAllSpecifications());
+    public Specification update(Long id, Specification data) {
+        return specificationRepo.update(id, data);
+    }
+
+    @Override
+    public SpecificationList findAll() {
+        return new SpecificationList(specificationRepo.findAll());
     }
 }

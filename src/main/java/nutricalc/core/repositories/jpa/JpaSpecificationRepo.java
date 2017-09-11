@@ -16,13 +16,13 @@ public class JpaSpecificationRepo implements SpecificationRepo {
     private EntityManager em;
 
     @Override
-    public Specification addSpecification(Specification data) {
+    public Specification add(Specification data) {
         em.persist(data);
         return data;
     }
 
     @Override
-    public List searchSpecificationsByTitle(String specificationTitle) {
+    public List findAllByTitle(String specificationTitle) {
         Query query = em.createQuery("SELECT s from Specification s where s.title=?1");
         query.setParameter(1, specificationTitle);
         List specifications = query.getResultList();
@@ -34,12 +34,12 @@ public class JpaSpecificationRepo implements SpecificationRepo {
     }
 
     @Override
-    public Specification findSpecification(Long id) {
+    public Specification findById(Long id) {
         return em.find(Specification.class, id);
     }
 
     @Override
-    public Specification updateSpecification(Long id, Specification data) {
+    public Specification update(Long id, Specification data) {
         Specification specification = em.find(Specification.class, id);
         specification.setTitle(data.getName(), data.getProducer());
         specification.setEnergyKj(data.getEnergyKj());
@@ -53,7 +53,7 @@ public class JpaSpecificationRepo implements SpecificationRepo {
     }
 
     @Override
-    public List<Specification> findAllSpecifications() {
+    public List<Specification> findAll() {
         Query query = em.createQuery("SELECT s from Specification s");
         return query.getResultList();
     }
