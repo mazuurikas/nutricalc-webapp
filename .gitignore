@@ -2,3 +2,4 @@
 target/
 nutricalc-webapp.iml
 log/
+node_modules/
