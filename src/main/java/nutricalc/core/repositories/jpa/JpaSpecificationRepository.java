@@ -1,7 +1,7 @@
 package nutricalc.core.repositories.jpa;
 
 import nutricalc.core.models.entities.Specification;
-import nutricalc.core.repositories.SpecificationRepo;
+import nutricalc.core.repositories.SpecificationRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class JpaSpecificationRepo implements SpecificationRepo {
+public class JpaSpecificationRepository implements SpecificationRepository {
 
     @PersistenceContext
     private EntityManager em;

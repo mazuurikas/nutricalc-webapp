@@ -4,7 +4,7 @@ import nutricalc.core.models.entities.Specification;
 
 import java.util.List;
 
-public interface SpecificationRepo {
+public interface SpecificationRepository {
     Specification findById(Long id);
 
     Specification update(Long id, Specification data);

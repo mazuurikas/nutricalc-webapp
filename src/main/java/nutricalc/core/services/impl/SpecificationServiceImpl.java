@@ -1,7 +1,7 @@
 package nutricalc.core.services.impl;
 
 import nutricalc.core.models.entities.Specification;
-import nutricalc.core.repositories.SpecificationRepo;
+import nutricalc.core.repositories.SpecificationRepository;
 import nutricalc.core.services.SpecificationService;
 import nutricalc.core.services.util.SpecificationList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,35 +12,35 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SpecificationServiceImpl implements SpecificationService {
 
-    private final SpecificationRepo specificationRepo;
+    private final SpecificationRepository specificationRepository;
 
     @Autowired
-    public SpecificationServiceImpl(SpecificationRepo specificationRepo) {
-        this.specificationRepo = specificationRepo;
+    public SpecificationServiceImpl(SpecificationRepository specificationRepository) {
+        this.specificationRepository = specificationRepository;
     }
 
     @Override
     public Specification add(Specification data) {
-        return specificationRepo.add(data);
+        return specificationRepository.add(data);
     }
 
     @Override
     public SpecificationList findAllByTitle(String specificationTitle) {
-        return new SpecificationList(specificationRepo.findAllByTitle(specificationTitle));
+        return new SpecificationList(specificationRepository.findAllByTitle(specificationTitle));
     }
 
     @Override
     public Specification findById(Long id) {
-        return specificationRepo.findById(id);
+        return specificationRepository.findById(id);
     }
 
     @Override
     public Specification update(Long id, Specification data) {
-        return specificationRepo.update(id, data);
+        return specificationRepository.update(id, data);
     }
 
     @Override
     public SpecificationList findAll() {
-        return new SpecificationList(specificationRepo.findAll());
+        return new SpecificationList(specificationRepository.findAll());
     }
 }
