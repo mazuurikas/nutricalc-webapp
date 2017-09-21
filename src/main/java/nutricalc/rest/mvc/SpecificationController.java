@@ -1,7 +1,7 @@
 package nutricalc.rest.mvc;
 
 import lombok.extern.slf4j.Slf4j;
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 import nutricalc.core.services.SpecificationService;
 import nutricalc.core.services.util.SpecificationList;
 import nutricalc.rest.resources.SpecificationListResource;

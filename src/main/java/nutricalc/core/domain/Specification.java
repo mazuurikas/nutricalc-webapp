@@ -1,10 +1,12 @@
-package nutricalc.core.models.entities;
+package nutricalc.core.domain;
 
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import static java.lang.String.format;
 
 @Entity
 @Data
@@ -14,7 +16,7 @@ public class Specification {
     private Long id;
     private String name;
     private String producer;
-    private String title;
+    private String comment;
     private double energyKj;
     private double energyKCal;
     private double fats;
@@ -23,12 +25,9 @@ public class Specification {
     private double sugars;
     private double protein;
     private double salt;
-    private String comment;
 
-    public void setTitle(String name, String producer) {
-        this.name = name;
-        this.producer = producer;
-        this.title = name + " (" + producer + ")";
+    public String getTitle() {
+        return format("%s (%s)", name, producer);
     }
 
     public void setFats(double fats, double saturatedFats) {

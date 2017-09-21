@@ -1,6 +1,6 @@
 package nutricalc.core.services.impl;
 
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 import nutricalc.core.repositories.SpecificationRepository;
 import nutricalc.core.services.SpecificationService;
 import nutricalc.core.services.util.SpecificationList;

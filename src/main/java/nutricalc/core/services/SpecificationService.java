@@ -1,9 +1,7 @@
 package nutricalc.core.services;
 
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 import nutricalc.core.services.util.SpecificationList;
-
-import java.util.List;
 
 public interface SpecificationService {
 

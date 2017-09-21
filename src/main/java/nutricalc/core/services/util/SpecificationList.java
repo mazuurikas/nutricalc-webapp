@@ -1,6 +1,6 @@
 package nutricalc.core.services.util;
 
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 
 import java.util.ArrayList;
 import java.util.List;

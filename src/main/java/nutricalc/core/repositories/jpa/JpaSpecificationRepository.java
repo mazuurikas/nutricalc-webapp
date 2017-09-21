@@ -1,6 +1,6 @@
 package nutricalc.core.repositories.jpa;
 
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 import nutricalc.core.repositories.SpecificationRepository;
 import org.springframework.stereotype.Repository;
 

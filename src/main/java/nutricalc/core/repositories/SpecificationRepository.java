@@ -1,6 +1,6 @@
 package nutricalc.core.repositories;
 
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 
 import java.util.List;
 

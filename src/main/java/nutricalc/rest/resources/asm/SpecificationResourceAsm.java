@@ -1,6 +1,6 @@
 package nutricalc.rest.resources.asm;
 
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 import nutricalc.rest.mvc.SpecificationController;
 import nutricalc.rest.resources.SpecificationResource;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;

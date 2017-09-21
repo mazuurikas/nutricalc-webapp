@@ -2,7 +2,7 @@ package nutricalc.rest.resources;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import nutricalc.core.models.entities.Specification;
+import nutricalc.core.domain.Specification;
 import org.springframework.hateoas.ResourceSupport;
 
 @Data
