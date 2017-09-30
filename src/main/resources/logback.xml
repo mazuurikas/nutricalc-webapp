@@ -9,9 +9,9 @@
 	</appender>
 
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>log/wh-sync.log</file>
+		<file>log/nutricalc-webapp.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>log/nutricalc.log.%d{dd.MM.yyyy}.gz</fileNamePattern>
+			<fileNamePattern>log/nutricalc-webapp.log.%d{dd.MM.yyyy}.gz</fileNamePattern>
 			<maxHistory>100</maxHistory>
 		</rollingPolicy>
 		<encoder>
