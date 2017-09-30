@@ -8,14 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import static java.lang.String.format;
-import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class Specification {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue
     private Long id;
     private String name;
     private String producer;
