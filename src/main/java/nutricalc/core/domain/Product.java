@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Data
@@ -15,4 +18,6 @@ public class Product {
     @GeneratedValue
     private Long id;
     private String name;
+    @OneToOne(cascade = ALL)
+    private Recipe recipe;
 }
