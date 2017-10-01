@@ -1,6 +1,6 @@
-package nutricalc.core.repository;
+package nutricalc.repository;
 
-import nutricalc.core.domain.Specification;
+import nutricalc.domain.Specification;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface SpecificationRepository extends PagingAndSortingRepository<Specification, Long> {

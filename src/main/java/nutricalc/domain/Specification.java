@@ -1,4 +1,4 @@
-package nutricalc.core.domain;
+package nutricalc.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
