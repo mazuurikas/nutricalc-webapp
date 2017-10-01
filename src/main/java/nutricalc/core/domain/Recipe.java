@@ -3,9 +3,10 @@ package nutricalc.core.domain;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Data
@@ -15,4 +16,7 @@ public class Recipe {
     @GeneratedValue
     private Long id;
     private String description;
+    @OneToMany(cascade = ALL, orphanRemoval = true)
+    @JoinColumn(name = "recipe_id")
+    private Set<RecipeLine> lines;
 }

@@ -14,6 +14,5 @@ public class RecipeLine {
     @Id
     @GeneratedValue
     private Long id;
-    private Long recipeId;
-    private Long specificationId;
+    private int amount;
 }
