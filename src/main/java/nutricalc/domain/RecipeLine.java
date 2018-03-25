@@ -1,13 +1,8 @@
 package nutricalc.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class RecipeLine {
     @Id
     @GeneratedValue
@@ -16,4 +11,28 @@ public class RecipeLine {
     @ManyToOne
     @JoinColumn
     private Specification specification;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public Specification getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(Specification specification) {
+        this.specification = specification;
+    }
 }
