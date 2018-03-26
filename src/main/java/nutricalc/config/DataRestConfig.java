@@ -9,7 +9,9 @@ public class DataRestConfig extends RepositoryRestConfigurerAdapter {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-        config.getCorsRegistry().addMapping("/**")
-                .allowedOrigins("http://localhost:4200");
+        config.getCorsRegistry()
+                .addMapping("/**")
+                .allowedMethods("*")
+                .allowedOrigins("*");
     }
 }
