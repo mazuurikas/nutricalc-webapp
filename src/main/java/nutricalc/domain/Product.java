@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import java.math.BigDecimal;
+
 import static javax.persistence.CascadeType.ALL;
 
 @Entity

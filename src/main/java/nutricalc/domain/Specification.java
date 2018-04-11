@@ -12,7 +12,6 @@ public class Specification {
     private String name;
     private String producer;
     private String comment;
-    private double energyKj;
     private double energyKCal;
     private double fats;
     private double saturatedFats;
@@ -51,14 +50,6 @@ public class Specification {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public double getEnergyKj() {
-        return energyKj;
-    }
-
-    public void setEnergyKj(double energyKj) {
-        this.energyKj = energyKj;
     }
 
     public double getEnergyKCal() {
